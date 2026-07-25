@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Marcel & Wioletta — Nasza Historia</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for romantic icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Heart & Lock Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='hGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff5e7e'/%3E%3Cstop offset='100%25' stop-color='%23e84393'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='scale(4.16)'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='url(%23hGrad)'/%3E%3C/g%3E%3Cpath d='M42,48 V41 A8,8 0 0,1 58,41 V48' fill='none' stroke='%23ffffff' stroke-width='4.5' stroke-linecap='round'/%3E%3Crect x='36' y='48' width='28' height='22' rx='4' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='56' r='3' fill='%23e84393'/%3E%3Cpath d='M48.5,56 L51.5,56 L51,64 L49,64 Z' fill='%23e84393'/%3E%3C/svg%3E">
+</head>
+<body>
+
+    <audio id="bg-music" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container" class="hearts-container"></div>
+
+    <!-- PIN Screen Overlay -->
+    <div id="pin-overlay" class="pin-overlay">
+        <div class="pin-card glass">
+            <div class="pin-header">
+                <div class="heart-lock-icon">
+                    <i class="fa-solid fa-heart-circle-bolt"></i>
+                </div>
+                <h1>Marcel & Wioletta</h1>
+                <p>Wpisz PIN, aby otworzyć naszą historię</p>
+            </div>
+            
+            <!-- Pin Dots Indicator -->
+            <div class="pin-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <!-- PIN Pad Keypad -->
+            <div class="pin-pad">
+                <button class="pin-btn" data-val="1">1</button>
+                <button class="pin-btn" data-val="2">2</button>
+                <button class="pin-btn" data-val="3">3</button>
+                <button class="pin-btn" data-val="4">4</button>
+                <button class="pin-btn" data-val="5">5</button>
+                <button class="pin-btn" data-val="6">6</button>
+                <button class="pin-btn" data-val="7">7</button>
+                <button class="pin-btn" data-val="8">8</button>
+                <button class="pin-btn" data-val="9">9</button>
+                <button class="pin-btn empty"></button>
+                <button class="pin-btn" data-val="0">0</button>
+                <button class="pin-btn delete-btn" aria-label="Usuń">
+                    <i class="fa-solid fa-backspace"></i>
+                </button>
+            </div>
+            
+            <div id="pin-error" class="pin-error">Niepoprawny PIN. Spróbuj ponownie.</div>
+        </div>
+    </div>
+
+    <!-- Main Content Container (hidden by default) -->
+    <div id="main-content" class="main-content locked">
+        
+        <!-- Music Control Button -->
+        <button id="music-toggle" class="music-toggle-btn glass" aria-label="Wycisz/Odtwórz muzykę">
+            <i class="fa-solid fa-music"></i>
+            <span class="music-waves">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+
+        <!-- Header / Hero Section -->
+        <header class="hero-section">
+            <div class="hero-glass glass">
+                <div class="hero-heart">
+                    <i class="fa-solid fa-heart beating-heart"></i>
+                </div>
+                <h2 class="hero-title">Marcel & Wioletta</h2>
+                
+                <div class="divider">
+                    <span class="line"></span>
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <span class="line"></span>
+                </div>
+
+                <p class="hero-subtitle">Jesteśmy razem już od</p>
+                <p class="hero-date">29 czerwca 2026</p>
+
+                <!-- Relationship Live Counter -->
+                <div class="counter-container">
+                    <div class="counter-box glass">
+                        <span id="days" class="counter-val">00</span>
+                        <span class="counter-label">Dni</span>
+                    </div>
+                    <div class="counter-box glass">
+                        <span id="hours" class="counter-val">00</span>
+                        <span class="counter-label">Godzin</span>
+                    </div>
+                    <div class="counter-box glass">
+                        <span id="minutes" class="counter-val">00</span>
+                        <span class="counter-label">Minut</span>
+                    </div>
+                    <div class="counter-box glass">
+                        <span id="seconds" class="counter-val">00</span>
+                        <span class="counter-label">Sekund</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Reasons Section -->
+        <section class="reasons-section">
+            <div class="section-container">
+                <h3 class="section-title">Powody, dla których Cię kocham</h3>
+                <p class="section-subtitle">Każdego dnia dajesz mi powody do uśmiechu. Oto kilka najważniejszych...</p>
+                
+                <div class="reasons-grid">
+                    <div class="reason-card glass">
+                        <div class="reason-icon">
+                            <i class="fa-solid fa-face-smile-beam"></i>
+                        </div>
+                        <h4>Twój uśmiech</h4>
+                        <p>Za Twój piękny uśmiech, który rozjaśnia nawet najciemniejszy dzień i sprawia, że wszystko staje się prostsze.</p>
+                    </div>
+
+                    <div class="reason-card glass">
+                        <div class="reason-icon">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h4>Twoja czułość i troska</h4>
+                        <p>Za to, z jaką delikatnością i ciepłem o mnie dbasz każdego dnia. Przy Tobie czuję się niesamowicie bezpiecznie.</p>
+                    </div>
+
+                    <div class="reason-card glass">
+                        <div class="reason-icon">
+                            <i class="fa-solid fa-laugh-wink"></i>
+                        </div>
+                        <h4>Wspólny śmiech</h4>
+                        <p>Za to, jak potrafisz mnie rozśmieszyć i za nasze wewnętrzne żarty, których nikt inny nie rozumie.</p>
+                    </div>
+
+                    <div class="reason-card glass">
+                        <div class="reason-icon">
+                            <i class="fa-solid fa-sparkles"></i>
+                        </div>
+                        <h4>Wyjątkowa bliskość</h4>
+                        <p>Za to, że przy Tobie mogę być w 100% sobą. Znasz wszystkie moje sekrety i akceptujesz mnie dokładnie takim, jaki jestem.</p>
+                    </div>
+
+                    <div class="reason-card glass">
+                        <div class="reason-icon">
+                            <i class="fa-solid fa-infinity"></i>
+                        </div>
+                        <h4>Wspólne marzenia</h4>
+                        <p>Za każdy dzień, który spędzamy razem i za wspaniałą przyszłość, którą wspólnie krok po kroku budujemy.</p>
+                    </div>
+
+                    <div class="reason-card glass">
+                        <div class="reason-icon">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h4>Po prostu za to, że jesteś</h4>
+                        <p>Za Twoje cudowne serce, mądrość, wsparcie i miłość, którą mnie obdarzasz. Jesteś moim całym światem.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Love Letter Section -->
+        <section class="love-letter-section">
+            <div class="section-container">
+                <h3 class="section-title">List dla Ciebie</h3>
+                <p class="section-subtitle">Kliknij pieczęć koperty, aby otworzyć list napisany prosto z serca...</p>
+                
+                <div class="envelope-wrapper" id="envelope-wrapper">
+                    <div class="envelope" id="envelope">
+                        <div class="envelope-flap"></div>
+                        <div class="wax-seal" id="wax-seal">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <div class="letter-paper" id="letter-paper">
+                            <div class="letter-content">
+                                <p class="letter-date">25 Lipca 2026 r.</p>
+                                <p class="letter-salutation">Moja Kochana Wiolu,</p>
+                                <p class="letter-body">
+                                    Piszę ten list, aby przypomnieć Ci, jak niezwykle ważna jesteś w moim życiu. Od 29 czerwca 2026 roku każda chwila spędzona z Tobą ma dla mnie wyjątkowe znaczenie. Dziękuję Ci za Twój uśmiech, za ciepło, którym mnie otaczasz, i za to, że po prostu jesteś. 
+                                    <br><br>
+                                    Obiecuję dbać o naszą miłość każdego dnia i tworzyć z Tobą najpiękniejsze wspomnienia. Jesteś moim dzisiaj i wszystkimi moimi jutrami.
+                                </p>
+                                <p class="letter-signature">Na zawsze Twój,<br>Marcel</p>
+                                <button class="close-letter-btn" id="close-letter-btn">Schowaj list</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <div class="section-container">
+                <h3 class="section-title">Galeria Wspomnień</h3>
+                <p class="section-subtitle">Chwile, które na zawsze pozostaną w naszych sercach</p>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item glass">
+                        <img src="images/IMG_6791.JPG" alt="" class="gallery-img">
+                    </div>
+                    <div class="gallery-item glass">
+                        <img src="images/IMG_6914.JPG" alt="" class="gallery-img">
+                    </div>
+                    <div class="gallery-item glass">
+                        <img src="images/pobierz.jpg" alt="" class="gallery-img">
+                    </div>
+                    <div class="gallery-item glass">
+                        <img src="images/pobierz (1).jpg" alt="" class="gallery-img">
+                    </div>
+                    <div class="gallery-item glass">
+                        <img src="images/pobierz (2).jpg" alt="" class="gallery-img">
+                    </div>
+                    <div class="gallery-item glass">
+                        <img src="images/pobierz (3).jpg" alt="" class="gallery-img">
+                    </div>
+                    <div class="gallery-item glass">
+                        <img src="images/pobierz (4).jpg" alt="" class="gallery-img">
+                    </div>
+                    <div class="gallery-item glass">
+                        <img src="images/pobierz (5).jpg" alt="" class="gallery-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <p>Stworzone z miłości przez Marcela dla Wioletty ❤️</p>
+            <p class="footer-sub">&copy; Od 29.06.2026 r. na zawsze razem</p>
+        </footer>
+
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Zamknij podgląd">&times;</button>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Powiększone zdjęcie">
+    </div>
+
+    <!-- JS Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
